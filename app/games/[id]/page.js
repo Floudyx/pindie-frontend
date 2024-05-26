@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getNormalizedGameDataById } from "../../api/api-utils.js";
 import { endpoints } from "../../api/config.js";
-import { Preloader } from "../../components/preloader/Preloader.jsx";
+import { Preloader } from "../../components/Preloader/Preloader.jsx";
 import { GameNotFound } from "../../components/GameNotFound/GameNotFound.jsx";
 import {
   isResponseOk,
