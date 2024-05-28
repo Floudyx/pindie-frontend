@@ -11,7 +11,7 @@ const normalizeDataObject = (obj) => {
   const newObj = JSON.parse(str)
   const result = { ...newObj, category: newObj.categories }
   return result;
-}
+} 
 
 export const normalizeData = (data) => {
   return data.map((item) => {
