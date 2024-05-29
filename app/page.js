@@ -5,6 +5,7 @@ import { CardsList } from "./components/CardsList/CardsList.jsx";
 import { Promo } from "./components/Promo/Promo.jsx";
 import { useEffect } from "react";
 import { endpoints } from "./api/config.js";
+import { useGetDataByCategory } from "./api/api-hooks.js";
 
 
 export default function Home() {
