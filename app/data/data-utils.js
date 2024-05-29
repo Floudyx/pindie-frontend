@@ -1,13 +1,9 @@
-import { data } from "./data.js";
-
-export const getGamesByCategory = (category) => {
+export const getGamesByCategory = (data, category) => {
   return data.filter((game) => {
-    return game.category.find((item) => {
-      return item.name === category;
-    });
+    return game.category.find((item) => item.name === category);
   });
 };
 
-export const getGameById = (id) => {
+export const getGameById = (data, id) => {
   return data.find((game) => game.id === Number(id));
-} 
+}

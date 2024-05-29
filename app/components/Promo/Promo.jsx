@@ -1,10 +1,10 @@
 "use client";
-import Styles from "./Promo.module.css";
+
 import { useState, useEffect } from "react";
+import Styles from "./Promo.module.css";
 
 export const Promo = () => {
   const [codeIsVisible, setCodeIsVisible] = useState(false);
-
   const handleButtonClick = () => {
     !codeIsVisible && setCodeIsVisible(true);
   };
@@ -24,7 +24,7 @@ export const Promo = () => {
   return (
     <section className={Styles["promo"]}>
       <div className={Styles["promo__description-block"]}>
-        <h2 className={Styles["promo__title"]}>Твой промо-код</h2>
+        <h2 className={Styles["promo__title"]}>Твой промокод</h2>
         <p className={Styles["promo__description"]}>
           Скидка на все курсы Яндекс Практикума для пользователей нашего сайта!
         </p>

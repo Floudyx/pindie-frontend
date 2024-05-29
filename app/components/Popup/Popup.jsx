@@ -4,10 +4,10 @@ export const Popup = (props) => {
   return (
     <div
       className={`${Styles["popup"]} ${
-        props.popupIsOpened && Styles["popup_is-opened"]
+        props.isOpened && Styles["popup_is-opened"]
       }`}
     >
-      <button className={Styles["close"]} onClick={props.closePopup}>
+      <button className={Styles["close"]} onClick={() => props.close()}>
         <svg
           className={Styles["close-icon"]}
           xmlns="http://www.w3.org/2000/svg"

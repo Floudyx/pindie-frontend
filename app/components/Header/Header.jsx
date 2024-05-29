@@ -1,16 +1,21 @@
 "use client";
-import Styles from "./Header.module.css";
+
 import { useState } from "react";
-import { Overlay } from "../Overlay/Overlay.jsx";
-import { Popup } from "../Popup/Popup.jsx";
-import { AuthForm } from "../AuthForm/AuthForm.jsx";
-import Link from "next/link.js";
+
+import Styles from "./Header.module.css";
+import { Overlay } from "../Overlay/Overlay";
+import { Popup } from "../Popup/Popup";
+import { AuthForm } from "../AuthForm/AuthForm";
+
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { useStore } from "@/app/store/app-store";
 
 export const Header = () => {
-  const pathname = usePathname();
   const [popupIsOpened, setPopupIsOpened] = useState(false);
+
+  const authContext = useStore();
 
   const openPopup = () => {
     setPopupIsOpened(true);
@@ -19,28 +24,37 @@ export const Header = () => {
     setPopupIsOpened(false);
   };
 
-  const store = useStore();
+  const pathname = usePathname();
 
   const handleLogout = () => {
-    store.logout();
+    authContext.logout();
   };
-
   return (
     <header className={Styles["header"]}>
-      <Link href="../" className={Styles["logo"]}>
-        <img
-          className={Styles["logo__image"]}
-          src="/images/logo.svg"
-          alt="Логотип Pindie"
-        />
-      </Link>
+      {pathname === "/" ? (
+        <span className={Styles["logo"]}>
+          <img
+            className={Styles["logo__image"]}
+            src="/images/logo.svg"
+            alt="Логотип Pindie"
+          />
+        </span>
+      ) : (
+        <Link href="/" className={Styles["logo"]}>
+          <img
+            className={Styles["logo__image"]}
+            src="/images/logo.svg"
+            alt="Логотип Pindie"
+          />
+        </Link>
+      )}
       <nav className={Styles["menu"]}>
         <ul className={Styles["menu__list"]}>
           <li className={Styles["menu__item"]}>
             <Link
               href="/new"
               className={`${Styles["menu__link"]} ${
-                pathname === "/new" ? Styles["menu__link_active"] : ""
+                pathname === "/new" && Styles["menu__link_active"]
               }`}
             >
               Новинки
@@ -50,7 +64,7 @@ export const Header = () => {
             <Link
               href="/popular"
               className={`${Styles["menu__link"]} ${
-                pathname === "/popular" ? Styles["menu__link_active"] : ""
+                pathname === "/popular" && Styles["menu__link_active"]
               }`}
             >
               Популярные
@@ -60,7 +74,7 @@ export const Header = () => {
             <Link
               href="/shooters"
               className={`${Styles["menu__link"]} ${
-                pathname === "/shooters" ? Styles["menu__link_active"] : ""
+                pathname === "/shooters" && Styles["menu__link_active"]
               }`}
             >
               Шутеры
@@ -70,17 +84,17 @@ export const Header = () => {
             <Link
               href="/runners"
               className={`${Styles["menu__link"]} ${
-                pathname === "/runners" ? Styles["menu__link_active"] : ""
+                pathname === "/runners" && Styles["menu__link_active"]
               }`}
             >
-              Ранеры
+              Раннеры
             </Link>
           </li>
           <li className={Styles["menu__item"]}>
             <Link
               href="/pixel-games"
               className={`${Styles["menu__link"]} ${
-                pathname === "/pixel-games" ? Styles["menu__link_active"] : ""
+                pathname === "/pixel-games" && Styles["menu__link_active"]
               }`}
             >
               Пиксельные
@@ -90,7 +104,7 @@ export const Header = () => {
             <Link
               href="/tds"
               className={`${Styles["menu__link"]} ${
-                pathname === "/tds" ? Styles["menu__link_active"] : ""
+                pathname === "/tds" && Styles["menu__link_active"]
               }`}
             >
               TDS
@@ -98,7 +112,7 @@ export const Header = () => {
           </li>
         </ul>
         <div className={Styles["auth"]}>
-          {store.isAuth ? (
+          {authContext.isAuth ? (
             <button className={Styles["auth__button"]} onClick={handleLogout}>
               Выйти
             </button>
@@ -109,8 +123,8 @@ export const Header = () => {
           )}
         </div>
       </nav>
-      <Overlay popupIsOpened={popupIsOpened} closePopup={closePopup} />
-      <Popup popupIsOpened={popupIsOpened} closePopup={closePopup}>
+      <Overlay isOpened={popupIsOpened} close={closePopup} />
+      <Popup isOpened={popupIsOpened} close={closePopup}>
         <AuthForm close={closePopup} />
       </Popup>
     </header>
