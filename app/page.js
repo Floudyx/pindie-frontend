@@ -1,5 +1,4 @@
 'use client'
-import { getGamesByCategory } from "./data/data-utils.js";
 import { Banner } from "./components/Banner/Banner.jsx";
 import { CardsList } from "./components/CardsList/CardsList.jsx";
 import { Promo } from "./components/Promo/Promo.jsx";
