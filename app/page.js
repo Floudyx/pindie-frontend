@@ -21,7 +21,7 @@ export default function Home() {
         return error;
       }
     };
-    getData("https://api-code-2.practicum-team.ru/games");
+    getData("https://pindie-backend22.nomoredomainswork.ru/games");
   }, []);
 
   const popularGames = getGamesByCategory("popular");
