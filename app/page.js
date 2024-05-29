@@ -1,10 +1,10 @@
 'use client'
+import { getGamesByCategory } from "./data/data-utils.js";
 import { Banner } from "./components/Banner/Banner.jsx";
 import { CardsList } from "./components/CardsList/CardsList.jsx";
 import { Promo } from "./components/Promo/Promo.jsx";
 import { useEffect } from "react";
 import { endpoints } from "./api/config.js";
-import { useGetDataByCategory } from "./api/api-hooks.js";
 
 
 export default function Home() {
@@ -25,9 +25,8 @@ export default function Home() {
     getData(endpoints.games);
   }, []);
 
-
-  const popularGames = useGetDataByCategory(endpoints.games, "popular");
-  const newGames = useGetDataByCategory(endpoints.games, "new");
+  const popularGames = getGamesByCategory("popular");
+  const newGames = getGamesByCategory("new");
 
   return (
     <main className="main">
