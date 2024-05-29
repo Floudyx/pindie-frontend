@@ -4,6 +4,7 @@ import { Banner } from "./components/Banner/Banner.jsx";
 import { CardsList } from "./components/CardsList/CardsList.jsx";
 import { Promo } from "./components/Promo/Promo.jsx";
 import { useEffect } from "react";
+import { endpoints } from "./api/config.js";
 
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
         return error;
       }
     };
-    getData("https://pindie-backend22.nomoredomainswork.ru/games");
+    getData(endpoints.games);
   }, []);
 
   const popularGames = getGamesByCategory("popular");
